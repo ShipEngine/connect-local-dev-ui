@@ -4,16 +4,22 @@
   "private": true,
   "main": "build/index.js",
   "dependencies": {
+    "bump": "^0.2.5",
+    "npm-check": "^5.9.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
     "build": "react-scripts build && tsc -p ./scripts/post-build/tsconfig.json",
+    "bump": "bump --tag --push --all",
+    "clean": "shx rm -rf coverage build",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "eslint src/**/*.ts{,x}",
+    "release": "npm run upgrade && npm run clean && npm test && npm run bump",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "upgrade": "npm-check -u && npm audit fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +51,7 @@
     "eslint-plugin-jest": "^23.20.0",
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.0.5",
+    "shx": "^0.3.2",
     "typescript": "~3.7.2"
   }
 }
