@@ -1,42 +1,26 @@
 {
   "name": "shipengine-integration-platform-local-dev-ui",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.1",
   "private": true,
   "main": "build/index.js",
-  "dependencies": {
-    "bump": "^0.2.5",
-    "npm-check": "^5.9.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
   "scripts": {
     "build": "react-scripts build && tsc -p ./scripts/post-build/tsconfig.json",
     "bump": "bump --tag --push --all",
     "clean": "shx rm -rf coverage build",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "eslint src/**/*.ts{,x}",
-    "release": "npm run upgrade && npm run clean && npm test && npm run bump",
+    "release": "npm run upgrade && npm run clean && CI=true react-scripts test && npm run bump",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "upgrade": "npm-check -u && npm audit fix"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
   },
   "devDependencies": {
+    "@jsdevtools/version-bump-prompt": "^6.0.6",
     "@testing-library/jest-dom": "^5.11.2",
     "@testing-library/react": "^10.4.7",
     "@testing-library/user-event": "^12.1.0",
@@ -53,5 +37,20 @@
     "prettier": "^2.0.5",
     "shx": "^0.3.2",
     "typescript": "^3.9.7"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
