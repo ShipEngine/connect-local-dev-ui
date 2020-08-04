@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 const ConnectMethodScreen: FunctionComponent = () => {
-  return <h1>Connect Method</h1>;
+  return <h1>ConnectMethodScreen</h1>;
 };
 
 export default ConnectMethodScreen;
