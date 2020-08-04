@@ -40,7 +40,7 @@ const App: FunctionComponent = () => {
   );
 };
 
-const AppLayout = () => {
+const AppLayout: FunctionComponent = () => {
   const location = useLocation();
   return (
     <Layout>
@@ -101,7 +101,9 @@ const AppLayout = () => {
             <Breadcrumb.Item key='1'>
               <Link to={routes.appsInfoPath()}>Home</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item key='2'>List</Breadcrumb.Item>
+            <Breadcrumb.Item key='2'>
+              {setBreadcrumb(location.pathname)}
+            </Breadcrumb.Item>
           </Breadcrumb>
           <Layout.Content
             style={{
@@ -155,4 +157,28 @@ const AppLayout = () => {
     </Layout>
   );
 };
+
+const setBreadcrumb = (pathname: string): string | undefined => {
+  switch (pathname) {
+    case routes.appsInfoPath():
+      return '';
+    case routes.connectMethodPath():
+      return 'Connect';
+    case routes.createShipmentMethodPath():
+      return 'Create Shipment';
+    case routes.cancelShipmentsMethodPath():
+      return 'Cancel Shipment';
+    case routes.rateShipmentMethodPath():
+      return 'Rate Shipment';
+    case routes.trackShipmentMethodPath():
+      return 'Track Shipment';
+    case routes.createManifestMethodPath():
+      return 'Create Manifest';
+    case routes.schedulePickupMethodPath():
+      return 'Schedule Pickup';
+    case routes.cancelPickupsMethodPath():
+      return 'Cancel Pickups';
+  }
+};
+
 export default App;
