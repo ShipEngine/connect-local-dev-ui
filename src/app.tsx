@@ -1,24 +1,20 @@
 import React, { FunctionComponent } from 'react';
-import logo from './assets/svgs/logo.svg';
 import './app.css';
 
 const App: FunctionComponent = () => {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className='sidebar'>
+        Min: 150px
+        <br />
+        Max: 25%
+      </div>
+      <p className='content'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nulla
+        architecto maxime modi nisi. Quas saepe dolorum, architecto quia fugit
+        nulla! Natus, iure eveniet ex iusto tempora animi quibusdam porro?
+      </p>
+    </>
   );
 };
 
