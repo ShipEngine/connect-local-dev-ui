@@ -9,14 +9,15 @@ const SchedulePickupMethodScreen: FunctionComponent = () => {
     <MethodNotImplementedMessage
       message={
         <span>
-          Your app does not implement the <code>schedulePickup</code> method.{' '}
+          We are working on something awesome for this page! If you woul like to
+          learn more about the <code>schedulePickup</code> method{' '}
           <a
             href='https://shipenginestag.wpengine.com/docs/integration-platform/reference/methods/schedule-pickup/'
             target='_blank'
             rel='noopener noreferrer'>
-            Read the documentation
-          </a>{' '}
-          to learn how to implement it.
+            you can find the docs here
+          </a>
+          .
         </span>
       }
     />

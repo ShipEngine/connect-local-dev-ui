@@ -12,6 +12,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 
 // Utils & Types
 import routes from './routes';
+import { AppProvider } from './contexts/app-context';
 
 // Screens
 import AppInfoScreen from './screens/app-info-screen';
@@ -32,14 +33,17 @@ import './app.css';
 
 const App: FunctionComponent = () => {
   return (
-    <Router>
-      <AppLayout />
-    </Router>
+    <AppProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </AppProvider>
   );
 };
 
 const AppLayout: FunctionComponent = () => {
   const location = useLocation();
+
   return (
     <Layout>
       {/* <Layout.Header>
@@ -108,7 +112,7 @@ const AppLayout: FunctionComponent = () => {
               background: '#fff',
               padding: 24,
               margin: 0,
-              height: '100vh',
+              height: '95vh',
             }}>
             <Switch>
               <Route exact path={routes.appsInfoPath()}>
@@ -156,7 +160,7 @@ const AppLayout: FunctionComponent = () => {
   );
 };
 
-const setBreadcrumb = (pathname: string): string | undefined => {
+const setBreadcrumb = (pathname: string): string => {
   switch (pathname) {
     case routes.appsInfoPath():
       return '';
@@ -176,6 +180,8 @@ const setBreadcrumb = (pathname: string): string | undefined => {
       return 'Schedule Pickup';
     case routes.cancelPickupsMethodPath():
       return 'Cancel Pickups';
+    default:
+      return '';
   }
 };
 

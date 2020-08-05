@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { Empty } from 'antd';
 
 // Styles & Assets
-import logo from '../../assets/svgs/logo.svg';
+import logo from '../../assets/svgs/logo-with-brackets.svg';
 
 interface Props {
   message: JSX.Element;

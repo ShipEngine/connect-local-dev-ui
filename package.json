@@ -1,6 +1,21 @@
 {
   "name": "@shipengine/connect-local-dev-ui",
   "version": "1.0.0",
+  "description": "The ShipEngine Integration Platform local development UI",
+  "author": {
+    "name": "ShipEngine",
+    "email": "support@shipengine.com",
+    "url": "https://connect.shipengine.com"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://connect.shipengine.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShipEngine/connect-local-dev-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShipEngine/connect-local-dev-ui/issues"
+  },
   "main": "build/index.js",
   "scripts": {
     "build": "react-scripts build && tsc -p ./scripts/post-build/tsconfig.json",
@@ -14,12 +29,15 @@
     "upgrade": "npm-check -u && npm audit fix"
   },
   "dependencies": {
+    "@shipengine/integration-platform-sdk": "0.0.40",
     "antd": "^4.5.2",
+    "axios": "^0.19.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "swr": "^0.3.0"
   },
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.0.6",
@@ -41,6 +59,10 @@
     "shx": "^0.3.2",
     "typescript": "^3.9.7"
   },
+  "engines": {
+    "node": ">=10"
+  },
+  "engineStrict": true,
   "eslintConfig": {
     "extends": "react-app"
   },
