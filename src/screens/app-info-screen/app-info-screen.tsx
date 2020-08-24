@@ -45,7 +45,7 @@ const AppInfoScreen: FunctionComponent = () => {
         <Descriptions.Item label='Version'>
           {app?.manifest.version}
         </Descriptions.Item>
-        <Descriptions.Item label='Main'>{app?.manifest.main}</Descriptions.Item>
+        {/* <Descriptions.Item label='Main'>{app?.manifest.main}</Descriptions.Item> */}
       </Descriptions>
 
       {app?.icon && <img src={app?.icon} alt='carrier app icon' />}

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { CarrierApp } from '@shipengine/integration-platform-sdk';
+import { CarrierApp } from '@shipengine/connect-sdk/lib/internal/carriers';
 import { default as useAppHook } from '../hooks/use-app';
 
 interface AppContextProps {

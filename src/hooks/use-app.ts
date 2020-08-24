@@ -1,5 +1,5 @@
 import useApi from './use-api';
-import { CarrierApp } from '@shipengine/integration-platform-sdk';
+import { CarrierApp } from '@shipengine/connect-sdk/lib/internal/carriers';
 
 interface UseApp {
   app: CarrierApp | undefined;
@@ -10,7 +10,7 @@ interface UseApp {
 export default function useApp(): UseApp {
   const { data, error, isValidating } = useApi<CarrierApp>(
     {
-      url: 'http://localhost:3001/',
+      url: 'http://localhost:3000/',
     },
     { refreshInterval: 10 },
   );

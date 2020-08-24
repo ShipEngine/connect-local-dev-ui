@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { Collapse } from 'antd';
 
 // Utils & Types
-import { DeliveryService } from '@shipengine/integration-platform-sdk';
+import { DeliveryService } from '@shipengine/connect-sdk/lib/internal/carriers';
 
 interface Props {
   deliveryServices: readonly DeliveryService[];
