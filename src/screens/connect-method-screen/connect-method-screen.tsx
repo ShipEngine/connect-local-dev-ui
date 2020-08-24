@@ -1,27 +1,23 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
+// import { withTheme } from '@rjsf/core';
+// import { Theme as AntDTheme } from '@rjsf/antd';
+import Form from '@rjsf/core';
+import { JSONSchema7 } from 'json-schema';
+
+// Utils & Types
+import { useApp } from '../../contexts/app-context';
 
 // Components
-import MethodNotImplementedMessage from '../../components/method-not-implemented-message';
+// import MethodNotImplementedMessage from '../../components/method-not-implemented-message';
 
 const ConnectMethodScreen: FunctionComponent = () => {
-  return (
-    <MethodNotImplementedMessage
-      message={
-        <span>
-          We are working on something awesome for this page! If you woul like to
-          learn more about the <code>connect</code> method{' '}
-          <a
-            href='https://shipenginestag.wpengine.com/docs/integration-platform/reference/methods/connect/'
-            target='_blank'
-            rel='noopener noreferrer'>
-            you can find the docs here
-          </a>
-          .
-        </span>
-      }
-    />
-  );
+  const { app } = useApp();
+
+  console.log(app?.connectionForm);
+
+  if (!app?.connectionForm) return <h1>loading...</h1>;
+  return <Form schema={app?.connectionForm.dataSchema as JSONSchema7} />;
 };
 
 export default ConnectMethodScreen;
