@@ -21,7 +21,7 @@ const AppInfoScreen: FunctionComponent = () => {
         </Descriptions.Item>
         <Descriptions.Item label='App Type'>{app?.type}</Descriptions.Item>
         <Descriptions.Item label='Description'>
-          {app?.description}
+          <p>{app?.description}</p>
         </Descriptions.Item>
         <Descriptions.Item label='Website'>
           <a href={(app?.websiteURL as unknown) as string}>{app?.websiteURL}</a>
@@ -45,10 +45,58 @@ const AppInfoScreen: FunctionComponent = () => {
         <Descriptions.Item label='Version'>
           {app?.manifest.version}
         </Descriptions.Item>
-        {/* <Descriptions.Item label='Main'>{app?.manifest.main}</Descriptions.Item> */}
       </Descriptions>
 
-      {app?.icon && <img src={app?.icon} alt='carrier app icon' />}
+      <Descriptions title={'Images'}>
+        <Descriptions.Item>
+          {app?.logo && (
+            <div>
+              <h4>logo width: 250px</h4>
+              <img
+                src={app?.logo}
+                style={{ width: '250px' }}
+                alt='carrier app icon'
+              />
+            </div>
+          )}
+        </Descriptions.Item>
+        <Descriptions.Item>
+          {app?.logo && (
+            <div>
+              <h4>logo width: 150px</h4>
+              <img
+                src={app?.logo}
+                style={{ width: '150px' }}
+                alt='carrier app icon'
+              />
+            </div>
+          )}
+        </Descriptions.Item>
+        <Descriptions.Item>
+          {app?.logo && (
+            <div>
+              <h4>logo width: 75px</h4>
+              <img
+                src={app?.logo}
+                style={{ width: '75px' }}
+                alt='carrier app icon'
+              />
+            </div>
+          )}
+        </Descriptions.Item>
+        <Descriptions.Item label='Icon'>
+          {app?.icon && (
+            <div>
+              <h4>icon</h4>
+              <img
+                src={app?.logo}
+                style={{ width: '50px' }}
+                alt='carrier app icon'
+              />
+            </div>
+          )}
+        </Descriptions.Item>
+      </Descriptions>
 
       {app?.deliveryServices && (
         <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
