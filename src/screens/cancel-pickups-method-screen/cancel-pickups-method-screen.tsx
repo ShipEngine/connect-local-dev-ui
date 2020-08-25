@@ -2,11 +2,11 @@
 import React, { FunctionComponent } from 'react';
 
 // Components
-import MethodNotImplementedMessage from '../../components/method-not-implemented-message';
+import CalloutWithMessage from '../../components/callout-with-message';
 
 const CancelPickupsMethodScreen: FunctionComponent = () => {
   return (
-    <MethodNotImplementedMessage
+    <CalloutWithMessage
       message={
         <span>
           We are working on something awesome for this page! If you woul like to

@@ -7,10 +7,26 @@ import { Descriptions } from 'antd';
 import { useApp } from '../../contexts/app-context';
 
 // Components
+import CalloutWithMessage from '../../components/callout-with-message';
 import DeliveryServicesAccordion from './delivery-services-accordion';
+import FullPageSpinner from '../../components/full-page-spinner';
 
 const AppInfoScreen: FunctionComponent = () => {
-  const { app } = useApp();
+  const { isLoading, isError, app } = useApp();
+
+  if (isLoading) return <FullPageSpinner />;
+
+  if (isError)
+    return (
+      <CalloutWithMessage
+        message={
+          <span>
+            An error occurred while loading the app. Please check the app logs
+            for more information.
+          </span>
+        }
+      />
+    );
 
   return (
     <>

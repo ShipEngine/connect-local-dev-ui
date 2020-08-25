@@ -10,7 +10,20 @@ interface UseApp {
 }
 
 export default function useApp(): UseApp {
-  const { isLoading, isError, data, error } = useQuery<CarrierApp>(
+  const {
+    // status,
+    // isIdle,
+    isLoading,
+    // isSuccess,
+    isError,
+    data,
+    error,
+    // isStale,
+    // isFetching,
+    // failureCount,
+    // refetch,
+    // clear,
+  } = useQuery<CarrierApp>(
     'app',
     async () => {
       const { data } = await axios.get('http://localhost:3000/');
@@ -21,6 +34,8 @@ export default function useApp(): UseApp {
       refetchInterval: 100,
     },
   );
+
+  // const tempIsError = isError || failureCount !== 0;
 
   return { isLoading, isError, app: data, error };
 }

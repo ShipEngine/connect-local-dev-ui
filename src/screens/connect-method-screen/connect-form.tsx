@@ -12,8 +12,6 @@ interface Props {
 }
 
 const ConnectFrom: FunctionComponent<Props> = ({ schema }) => {
-  console.log('ConnectFrom RENDER!');
-
   return <Form schema={schema} />;
 };
 
