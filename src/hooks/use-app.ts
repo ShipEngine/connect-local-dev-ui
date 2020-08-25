@@ -14,8 +14,6 @@ export default function useApp(): UseApp {
     'app',
     async () => {
       const { data } = await axios.get('http://localhost:3000/');
-      console.log('refetch');
-
       return data;
     },
     {
