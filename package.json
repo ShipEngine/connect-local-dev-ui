@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@rjsf/antd": "^2.3.0",
     "@rjsf/core": "^2.3.0",
     "@shipengine/connect-sdk": "^1.0.10",
     "antd": "^4.6.1",

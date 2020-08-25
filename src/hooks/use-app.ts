@@ -12,7 +12,7 @@ export default function useApp(): UseApp {
     {
       url: 'http://localhost:3000/',
     },
-    { refreshInterval: 10 },
+    // { refreshInterval: 10 },
   );
 
   console.log(data);

@@ -1,12 +1,13 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
-// import { withTheme } from '@rjsf/core';
-// import { Theme as AntDTheme } from '@rjsf/antd';
-import Form from '@rjsf/core';
+import { withTheme } from '@rjsf/core';
+import { Theme as AntDTheme } from '@rjsf/antd';
 import { JSONSchema7 } from 'json-schema';
 
 // Utils & Types
 import { useApp } from '../../contexts/app-context';
+
+const Form = withTheme(AntDTheme);
 
 // Components
 // import MethodNotImplementedMessage from '../../components/method-not-implemented-message';

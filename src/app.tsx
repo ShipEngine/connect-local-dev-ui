@@ -67,7 +67,7 @@ const AppLayout: FunctionComponent = () => {
             <Menu.Item key={routes.connectMethodPath()}>
               <Link to={routes.connectMethodPath()}>Connect</Link>
             </Menu.Item>
-            <Menu.Item key={routes.createShipmentMethodPath()}>
+            {/* <Menu.Item key={routes.createShipmentMethodPath()}>
               <Link to={routes.createShipmentMethodPath()}>
                 Create Shipment
               </Link>
@@ -95,7 +95,7 @@ const AppLayout: FunctionComponent = () => {
             </Menu.Item>
             <Menu.Item key={routes.cancelPickupsMethodPath()}>
               <Link to={routes.cancelPickupsMethodPath()}>Cancel Pickups</Link>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
         </Layout.Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
