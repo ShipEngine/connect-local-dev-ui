@@ -1,25 +1,28 @@
-import useApi from './use-api';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 import { CarrierApp } from '@shipengine/connect-sdk/lib/internal/carriers';
 
 interface UseApp {
-  app: CarrierApp | undefined;
-  error: Error | undefined;
-  isValidating: boolean;
+  isLoading: boolean;
+  isError: boolean;
+  app?: CarrierApp;
+  error?: unknown;
 }
 
 export default function useApp(): UseApp {
-  const { data, error, isValidating } = useApi<CarrierApp>(
-    {
-      url: 'http://localhost:3000/',
+  const { isLoading, isError, data, error } = useQuery<CarrierApp>(
+    'app',
+    async () => {
+      const { data } = await axios.get('http://localhost:3000/');
+      console.log('refetch');
+
+      return data;
     },
-    // { refreshInterval: 10 },
+    {
+      // Refetch the data every second
+      refetchInterval: 100,
+    },
   );
 
-  console.log(data);
-
-  return {
-    app: data,
-    error,
-    isValidating,
-  };
+  return { isLoading, isError, app: data, error };
 }

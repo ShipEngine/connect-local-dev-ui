@@ -1,24 +1,22 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
-import { withTheme } from '@rjsf/core';
-import { Theme as AntDTheme } from '@rjsf/antd';
 import { JSONSchema7 } from 'json-schema';
 
 // Utils & Types
 import { useApp } from '../../contexts/app-context';
 
-const Form = withTheme(AntDTheme);
-
 // Components
+import ConnectForm from './connect-form';
 // import MethodNotImplementedMessage from '../../components/method-not-implemented-message';
 
 const ConnectMethodScreen: FunctionComponent = () => {
-  const { app } = useApp();
-
-  console.log(app?.connectionForm);
+  const { isLoading, isError, app } = useApp();
 
   if (!app?.connectionForm) return <h1>loading...</h1>;
-  return <Form schema={app?.connectionForm.dataSchema as JSONSchema7} />;
+  if (isLoading) return <h1>loading...</h1>;
+  if (isError) return <h1>{isError}</h1>;
+
+  return <ConnectForm schema={app?.connectionForm.dataSchema as JSONSchema7} />;
 };
 
 export default ConnectMethodScreen;

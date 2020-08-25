@@ -3,9 +3,10 @@ import { CarrierApp } from '@shipengine/connect-sdk/lib/internal/carriers';
 import { default as useAppHook } from '../hooks/use-app';
 
 interface AppContextProps {
-  app: CarrierApp | undefined;
-  error: Error | undefined;
-  isValidating: boolean;
+  isLoading: boolean;
+  isError: boolean;
+  app?: CarrierApp;
+  error?: unknown;
 }
 
 const AppContext = React.createContext<AppContextProps | undefined>(undefined);
@@ -15,10 +16,10 @@ interface AppProviderProps {
 }
 
 const AppProvider: FunctionComponent<AppProviderProps> = ({ children }) => {
-  const { app, error, isValidating } = useAppHook();
+  const { isLoading, isError, app, error } = useAppHook();
 
   return (
-    <AppContext.Provider value={{ app, error, isValidating }}>
+    <AppContext.Provider value={{ isLoading, isError, app, error }}>
       {children}
     </AppContext.Provider>
   );
