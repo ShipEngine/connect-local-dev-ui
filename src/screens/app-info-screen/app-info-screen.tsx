@@ -1,6 +1,6 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
-import { Descriptions, Divider } from 'antd';
+import { Descriptions, Divider, Typography } from 'antd';
 
 // Utils & Types
 import { useApp } from '../../contexts/app-context';
@@ -120,7 +120,11 @@ const AppInfoScreen: FunctionComponent = () => {
       <Divider />
 
       {app?.deliveryServices && (
-        <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
+        <>
+          <Typography.Title level={5}>Delivery Services</Typography.Title>
+
+          <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
+        </>
       )}
     </>
   );
