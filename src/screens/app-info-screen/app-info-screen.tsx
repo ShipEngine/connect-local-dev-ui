@@ -1,7 +1,6 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
-import { Descriptions } from 'antd';
-// import { PlaySquareOutlined } from '@ant-design/icons';
+import { Descriptions, Divider } from 'antd';
 
 // Utils & Types
 import { useApp } from '../../contexts/app-context';
@@ -30,7 +29,7 @@ const AppInfoScreen: FunctionComponent = () => {
 
   return (
     <>
-      <Descriptions title={app?.name}>
+      <Descriptions title={app?.name} column={1}>
         <Descriptions.Item label='ID'>{app?.id}</Descriptions.Item>
         <Descriptions.Item label='SDK Version'>
           {app?.sdkVersion}
@@ -56,14 +55,30 @@ const AppInfoScreen: FunctionComponent = () => {
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions title={'Manifest (package.json)'}>
+      <Divider />
+
+      <Descriptions title={'Manifest (package.json)'} column={1}>
         <Descriptions.Item label='Name'>{app?.manifest.name}</Descriptions.Item>
         <Descriptions.Item label='Version'>
           {app?.manifest.version}
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions title={'Images'}>
+      <Divider />
+
+      <Descriptions title={'Images'} column={1}>
+        <Descriptions.Item label='Icon'>
+          {app?.icon && (
+            <div>
+              <h4>icon</h4>
+              <img
+                src={app?.logo}
+                style={{ width: '50px' }}
+                alt='carrier app icon'
+              />
+            </div>
+          )}
+        </Descriptions.Item>
         <Descriptions.Item>
           {app?.logo && (
             <div>
@@ -100,19 +115,9 @@ const AppInfoScreen: FunctionComponent = () => {
             </div>
           )}
         </Descriptions.Item>
-        <Descriptions.Item label='Icon'>
-          {app?.icon && (
-            <div>
-              <h4>icon</h4>
-              <img
-                src={app?.logo}
-                style={{ width: '50px' }}
-                alt='carrier app icon'
-              />
-            </div>
-          )}
-        </Descriptions.Item>
       </Descriptions>
+
+      <Divider />
 
       {app?.deliveryServices && (
         <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
