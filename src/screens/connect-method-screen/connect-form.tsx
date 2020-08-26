@@ -17,8 +17,9 @@ const Form = withTheme(AntDTheme);
 
 interface Props {
   schema: JSONSchema7;
+  uiSchema: JSONSchema7;
 }
-const ConnectFrom: FunctionComponent<Props> = ({ schema }) => {
+const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [requestInFlight, setRequestInFlight] = React.useState(false);
   const [request, setRequest] = React.useState({});
@@ -91,7 +92,7 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema }) => {
         </div>
       </Modal>
       <Card title='Connect Form'>
-        <Form schema={schema} onSubmit={handleSubmit} />
+        <Form schema={schema} onSubmit={handleSubmit} uiSchema={uiSchema} />
       </Card>
     </>
   );

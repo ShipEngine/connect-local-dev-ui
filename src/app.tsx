@@ -46,12 +46,6 @@ const AppLayout: FunctionComponent = () => {
 
   return (
     <Layout>
-      {/* <Layout.Header>
-          <Menu
-            theme='light'
-            mode='horizontal'
-            defaultSelectedKeys={['2']}></Menu>
-        </Layout.Header> */}
       <Layout>
         <Layout.Sider
           width={220}
@@ -112,7 +106,7 @@ const AppLayout: FunctionComponent = () => {
               background: '#fff',
               padding: 24,
               margin: 0,
-              height: '95vh',
+              minHeight: '95vh',
             }}>
             <Switch>
               <Route exact path={routes.appsInfoPath()}>

@@ -27,7 +27,12 @@ const ConnectMethodScreen: FunctionComponent = () => {
       />
     );
 
-  return <ConnectForm schema={app?.connectionForm.dataSchema as JSONSchema7} />;
+  return (
+    <ConnectForm
+      schema={app?.connectionForm.dataSchema as JSONSchema7}
+      uiSchema={app?.connectionForm.uiSchema as JSONSchema7}
+    />
+  );
 };
 
 export default ConnectMethodScreen;

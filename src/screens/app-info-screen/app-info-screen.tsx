@@ -29,7 +29,7 @@ const AppInfoScreen: FunctionComponent = () => {
 
   return (
     <>
-      <Descriptions title={app?.name} column={1}>
+      <Descriptions title={app?.name} column={2}>
         <Descriptions.Item label='ID'>{app?.id}</Descriptions.Item>
         <Descriptions.Item label='SDK Version'>
           {app?.sdkVersion}
@@ -57,7 +57,7 @@ const AppInfoScreen: FunctionComponent = () => {
 
       <Divider />
 
-      <Descriptions title={'Manifest (package.json)'} column={1}>
+      <Descriptions title={'Manifest (package.json)'} column={2}>
         <Descriptions.Item label='Name'>{app?.manifest.name}</Descriptions.Item>
         <Descriptions.Item label='Version'>
           {app?.manifest.version}
@@ -66,19 +66,7 @@ const AppInfoScreen: FunctionComponent = () => {
 
       <Divider />
 
-      <Descriptions title={'Images'} column={1}>
-        <Descriptions.Item label='Icon'>
-          {app?.icon && (
-            <div>
-              <h4>icon</h4>
-              <img
-                src={app?.logo}
-                style={{ width: '50px' }}
-                alt='carrier app icon'
-              />
-            </div>
-          )}
-        </Descriptions.Item>
+      <Descriptions title={'Images'} column={2}>
         <Descriptions.Item>
           {app?.logo && (
             <div>
@@ -115,16 +103,26 @@ const AppInfoScreen: FunctionComponent = () => {
             </div>
           )}
         </Descriptions.Item>
+        <Descriptions.Item label='Icon'>
+          {app?.icon && (
+            <div>
+              <h4>icon</h4>
+              <img
+                src={app?.logo}
+                style={{ width: '50px' }}
+                alt='carrier app icon'
+              />
+            </div>
+          )}
+        </Descriptions.Item>
       </Descriptions>
 
       <Divider />
 
-      {app?.deliveryServices && (
-        <>
-          <Typography.Title level={5}>Delivery Services</Typography.Title>
+      <Typography.Title level={4}>Delivery Services</Typography.Title>
 
-          <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
-        </>
+      {app?.deliveryServices && (
+        <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
       )}
     </>
   );
