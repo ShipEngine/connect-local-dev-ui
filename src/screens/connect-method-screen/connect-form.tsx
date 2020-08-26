@@ -1,9 +1,8 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
-// import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios, { AxiosError } from 'axios';
 import { JSONSchema7 } from 'json-schema';
-import { Modal, Divider } from 'antd';
+import { Modal, Divider, Card } from 'antd';
 import { Theme as AntDTheme } from '@rjsf/antd';
 import { isEqual } from 'lodash';
 import { withTheme, FormSubmit } from '@rjsf/core';
@@ -91,7 +90,9 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema }) => {
             )}
         </div>
       </Modal>
-      <Form schema={schema} onSubmit={handleSubmit} />
+      <Card title='Connect Form'>
+        <Form schema={schema} onSubmit={handleSubmit} />
+      </Card>
     </>
   );
 };
