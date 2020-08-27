@@ -1,6 +1,6 @@
 // Third Party
 import React, { FunctionComponent } from 'react';
-import { Collapse, Descriptions } from 'antd';
+import { Collapse, Descriptions, Divider } from 'antd';
 
 // Utils & Types
 import { DeliveryService } from '@shipengine/connect-sdk/lib/internal/carriers';
@@ -66,20 +66,43 @@ const DeliveryServicesAccordion: FunctionComponent<Props> = ({
               {deliveryService.labelSizes.join(', ')}
             </Descriptions.Item>
           </Descriptions>
+          <Divider />
           Packaging
           <Collapse accordion>
             {deliveryService.packaging.map((p, index) => (
               <Collapse.Panel header={p.name} key={`package-${index}`}>
                 <Descriptions column={2}>
-                  <Descriptions.Item label='Name'>{p.name}</Descriptions.Item>
+                  <Descriptions.Item label='ID'>{p.id}</Descriptions.Item>
+                  <Descriptions.Item label='Code'>{p.code}</Descriptions.Item>
                   <Descriptions.Item label='Description'>
                     {p.description}
                   </Descriptions.Item>
-                  <Descriptions.Item label='Class'>
-                    {deliveryService.class}
+                  <Descriptions.Item label='Requires Weight'>
+                    {p.requiresWeight.toString()}
                   </Descriptions.Item>
-                  <Descriptions.Item label='Grade'>
-                    {deliveryService.grade}
+                  <Descriptions.Item label='Requires Dimensions'>
+                    {p.requiresDimensions.toString()}
+                  </Descriptions.Item>
+                </Descriptions>
+              </Collapse.Panel>
+            ))}
+          </Collapse>
+          <Divider />
+          Delivery Confirmations
+          <Collapse accordion>
+            {deliveryService.packaging.map((p, index) => (
+              <Collapse.Panel header={p.name} key={`package-${index}`}>
+                <Descriptions column={2}>
+                  <Descriptions.Item label='ID'>{p.id}</Descriptions.Item>
+                  <Descriptions.Item label='Code'>{p.code}</Descriptions.Item>
+                  <Descriptions.Item label='Description'>
+                    {p.description}
+                  </Descriptions.Item>
+                  <Descriptions.Item label='Requires Weight'>
+                    {p.requiresWeight.toString()}
+                  </Descriptions.Item>
+                  <Descriptions.Item label='Requires Dimensions'>
+                    {p.requiresDimensions.toString()}
                   </Descriptions.Item>
                 </Descriptions>
               </Collapse.Panel>

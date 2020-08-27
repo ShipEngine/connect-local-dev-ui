@@ -70,7 +70,7 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
             <Spinner />
           ) : (
               <>
-                <h4>Request</h4>
+                <h4>Function Args</h4>
                 <JSONPretty
                   id='json-pretty'
                   data={request}
@@ -80,7 +80,7 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
 
                 <Divider plain />
 
-                <h4>Response</h4>
+                <h4>Return Value</h4>
                 <JSONPretty
                   id='json-pretty'
                   data={response}
