@@ -23,12 +23,6 @@ const DeliveryServicesAccordion: FunctionComponent<Props> = ({
             <Descriptions.Item label='Description'>
               {deliveryService.description}
             </Descriptions.Item>
-            <Descriptions.Item label='Class'>
-              {deliveryService.class}
-            </Descriptions.Item>
-            <Descriptions.Item label='Grade'>
-              {deliveryService.grade}
-            </Descriptions.Item>
             <Descriptions.Item label='Code'>
               {deliveryService.code}
             </Descriptions.Item>
@@ -90,23 +84,28 @@ const DeliveryServicesAccordion: FunctionComponent<Props> = ({
           <Divider />
           Delivery Confirmations
           <Collapse accordion>
-            {deliveryService.packaging.map((p, index) => (
-              <Collapse.Panel header={p.name} key={`package-${index}`}>
-                <Descriptions column={2}>
-                  <Descriptions.Item label='ID'>{p.id}</Descriptions.Item>
-                  <Descriptions.Item label='Code'>{p.code}</Descriptions.Item>
-                  <Descriptions.Item label='Description'>
-                    {p.description}
-                  </Descriptions.Item>
-                  <Descriptions.Item label='Requires Weight'>
-                    {p.requiresWeight.toString()}
-                  </Descriptions.Item>
-                  <Descriptions.Item label='Requires Dimensions'>
-                    {p.requiresDimensions.toString()}
-                  </Descriptions.Item>
-                </Descriptions>
-              </Collapse.Panel>
-            ))}
+            {deliveryService.deliveryConfirmations.map(
+              (deliveryConfirmation, index) => (
+                <Collapse.Panel
+                  header={deliveryConfirmation.name}
+                  key={`deliveryConfirmation-${index}`}>
+                  <Descriptions column={2}>
+                    <Descriptions.Item label='ID'>
+                      {deliveryConfirmation.id}
+                    </Descriptions.Item>
+                    <Descriptions.Item label='Code'>
+                      {deliveryConfirmation.code}
+                    </Descriptions.Item>
+                    <Descriptions.Item label='Description'>
+                      {deliveryConfirmation.description}
+                    </Descriptions.Item>
+                    <Descriptions.Item label='Type'>
+                      {deliveryConfirmation.type}
+                    </Descriptions.Item>
+                  </Descriptions>
+                </Collapse.Panel>
+              ),
+            )}
           </Collapse>
         </Collapse.Panel>
       ))}
