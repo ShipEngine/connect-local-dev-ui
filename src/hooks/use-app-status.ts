@@ -1,15 +1,15 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { CarrierApp } from '@shipengine/connect-sdk/lib/internal/carriers';
+import { AppStatus } from '../types';
 
 interface UseApp {
   isLoading: boolean;
   isError: boolean;
-  app?: CarrierApp;
+  appStatus?: AppStatus;
   error?: unknown;
 }
 
-export default function useApp(): UseApp {
+export default function useAppStatus(): UseApp {
   const {
     // status,
     // isIdle,
@@ -23,10 +23,10 @@ export default function useApp(): UseApp {
     // failureCount,
     // refetch,
     // clear,
-  } = useQuery<CarrierApp>(
-    'app',
+  } = useQuery<AppStatus>(
+    'app-status',
     async () => {
-      const { data } = await axios.get('http://localhost:3000/app-info-quiet');
+      const { data } = await axios.get('http://localhost:3000/app-status');
       return data;
     },
     {
@@ -35,7 +35,5 @@ export default function useApp(): UseApp {
     },
   );
 
-  // const tempIsError = isError || failureCount !== 0;
-
-  return { isLoading, isError, app: data, error };
+  return { isLoading, isError, appStatus: data, error };
 }

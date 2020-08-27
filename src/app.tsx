@@ -8,11 +8,13 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Affix, Button, Layout, Menu, Breadcrumb, Modal } from 'antd';
+import { ExclamationOutlined } from '@ant-design/icons';
 
 // Utils & Types
 import routes from './routes';
 import { AppProvider } from './contexts/app-context';
+import { AppStatusProvider, useAppStatus } from './contexts/app-status-context';
 
 // Screens
 import AppInfoScreen from './screens/app-info-screen';
@@ -34,15 +36,19 @@ import './app.css';
 const App: FunctionComponent = () => {
   return (
     <AppProvider>
-      <Router>
-        <AppLayout />
-      </Router>
+      <AppStatusProvider>
+        <Router>
+          <AppLayout />
+        </Router>
+      </AppStatusProvider>
     </AppProvider>
   );
 };
 
 const AppLayout: FunctionComponent = () => {
   const location = useLocation();
+  const { appStatus } = useAppStatus();
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   return (
     <Layout>
@@ -147,6 +153,32 @@ const AppLayout: FunctionComponent = () => {
 
               <Redirect to={routes.appsInfoPath()}></Redirect>
             </Switch>
+            <Modal
+              title='App Error'
+              footer={null}
+              visible={modalVisible}
+              closable={true}
+              onCancel={() => {
+                setModalVisible(false);
+              }}>
+              <code>{appStatus?.error?.message}</code>
+            </Modal>
+            {appStatus && appStatus.status === 'down' && (
+              <Affix
+                style={{ position: 'absolute', bottom: '25px', right: '40px' }}>
+                <Button
+                  onClick={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                  type='primary'
+                  style={{
+                    backgroundColor: 'red',
+                    borderColor: 'darkred',
+                    boxShadow: '2px 2px 2px 0px rgba(0,0,0,0.75)',
+                  }}
+                  icon={<ExclamationOutlined />}></Button>
+              </Affix>
+            )}
           </Layout.Content>
         </Layout>
       </Layout>

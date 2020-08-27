@@ -2,7 +2,7 @@
 import React, { FunctionComponent } from 'react';
 import axios, { AxiosError } from 'axios';
 import { JSONSchema7 } from 'json-schema';
-import { Modal, Divider, Card } from 'antd';
+import { Divider, Card, Row, Col } from 'antd';
 import { Theme as AntDTheme } from '@rjsf/antd';
 import { isEqual } from 'lodash';
 import { withTheme, FormSubmit } from '@rjsf/core';
@@ -20,16 +20,11 @@ interface Props {
   uiSchema: JSONSchema7;
 }
 const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [requestInFlight, setRequestInFlight] = React.useState(false);
   const [request, setRequest] = React.useState({});
-  const [response, setResponse] = React.useState({});
+  const [response, setResponse] = React.useState(undefined);
 
   const handleSubmit = async (formSubmit: FormSubmit) => {
     setRequest(formSubmit.formData);
-    console.log(formSubmit.formData);
-    setRequestInFlight(true);
-    setModalVisible(true);
     let response;
     try {
       const { data } = await axios.put(
@@ -44,57 +39,50 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
     }
 
     setResponse(response);
-    setRequestInFlight(false);
   };
 
   return (
-    <>
-      <Modal
-        title='Request Logs'
-        footer={null}
-        width={900}
-        visible={modalVisible}
-        closable={true}
-        onCancel={() => {
-          setRequest({});
-          setResponse({});
-          setModalVisible(false);
-        }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-          }}>
-          {requestInFlight ? (
-            <Spinner />
-          ) : (
-              <>
-                <h4>Function Args</h4>
-                <JSONPretty
-                  id='json-pretty'
-                  data={request}
-                  style={{
-                    maxWidth: '850px',
-                  }}></JSONPretty>
+    <Row>
+      <Col span={12}>
+        <Card title='Connect Form' style={{ margin: '0 5px' }}>
+          <Form schema={schema} onSubmit={handleSubmit} uiSchema={uiSchema} />
+        </Card>
+      </Col>
+      <Col span={12}>
+        <Card title='Connect Inputs/Outputs' style={{ margin: '0 5px' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+            }}>
+            {!response ? (
+              <Spinner />
+            ) : (
+                <>
+                  <h4>Connect Args</h4>
+                  <JSONPretty
+                    id='json-pretty'
+                    data={request}
+                    style={{
+                      maxWidth: '850px',
+                    }}></JSONPretty>
 
-                <Divider plain />
+                  <Divider plain />
 
-                <h4>Return Value</h4>
-                <JSONPretty
-                  id='json-pretty'
-                  data={response}
-                  style={{
-                    maxWidth: '850px',
-                  }}></JSONPretty>
-              </>
-            )}
-        </div>
-      </Modal>
-      <Card title='Connect Form'>
-        <Form schema={schema} onSubmit={handleSubmit} uiSchema={uiSchema} />
-      </Card>
-    </>
+                  <h4>Connect Return Value</h4>
+                  <JSONPretty
+                    id='json-pretty'
+                    data={response}
+                    style={{
+                      maxWidth: '850px',
+                    }}></JSONPretty>
+                </>
+              )}
+          </div>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

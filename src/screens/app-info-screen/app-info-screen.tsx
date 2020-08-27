@@ -106,7 +106,6 @@ const AppInfoScreen: FunctionComponent = () => {
         <Descriptions.Item label='Icon'>
           {app?.icon && (
             <div>
-              <h4>icon</h4>
               <img
                 src={app?.logo}
                 style={{ width: '50px' }}
