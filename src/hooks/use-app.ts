@@ -26,7 +26,7 @@ export default function useApp(): UseApp {
   } = useQuery<CarrierApp>(
     'app',
     async () => {
-      const { data } = await axios.get('http://localhost:3000/app-info-quiet');
+      const { data } = await axios.get('http://localhost:3000');
       return data;
     },
     {

@@ -7,6 +7,7 @@ import { Theme as AntDTheme } from '@rjsf/antd';
 import { isEqual } from 'lodash';
 import { withTheme, FormSubmit } from '@rjsf/core';
 import JSONPretty from 'react-json-pretty';
+import { v4 as uuidv4 } from 'uuid';
 
 // Components
 import Spinner from '../../components/spinner';
@@ -24,13 +25,17 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
   const [response, setResponse] = React.useState(undefined);
 
   const handleSubmit = async (formSubmit: FormSubmit) => {
-    setRequest(formSubmit.formData);
+    const body = {
+      transaction: {
+        id: uuidv4(),
+        session: {},
+      },
+      connectionFormData: formSubmit.formData,
+    };
+    setRequest(body);
     let response;
     try {
-      const { data } = await axios.put(
-        'http://localhost:3000/connect',
-        formSubmit.formData,
-      );
+      const { data } = await axios.put('http://localhost:3000/connect', body);
       response = data;
     } catch (error) {
       const errorWithType = error as AxiosError;

@@ -114,7 +114,3 @@ const DeliveryServicesAccordion: FunctionComponent<Props> = ({
 };
 
 export default DeliveryServicesAccordion;
-
-// public readonly originCountries: readonly Country[];
-// public readonly destinationCountries: readonly Country[];
-// public readonly deliveryConfirmations: readonly DeliveryConfirmation[];

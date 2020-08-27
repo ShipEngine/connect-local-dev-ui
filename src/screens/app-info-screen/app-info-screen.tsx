@@ -9,6 +9,7 @@ import { useApp } from '../../contexts/app-context';
 import CalloutWithMessage from '../../components/callout-with-message';
 import DeliveryServicesAccordion from './delivery-services-accordion';
 import FullPageSpinner from '../../components/full-page-spinner';
+import PickupServicesAccordion from './pickup-services-accordion';
 
 const AppInfoScreen: FunctionComponent = () => {
   const { isLoading, isError, app } = useApp();
@@ -122,6 +123,14 @@ const AppInfoScreen: FunctionComponent = () => {
 
       {app?.deliveryServices && (
         <DeliveryServicesAccordion deliveryServices={app?.deliveryServices} />
+      )}
+
+      <Divider />
+
+      <Typography.Title level={4}>Pickup Services</Typography.Title>
+
+      {app?.pickupServices && (
+        <PickupServicesAccordion pickupServices={app?.pickupServices} />
       )}
     </>
   );
