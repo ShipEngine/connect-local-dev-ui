@@ -1,17 +1,18 @@
 // Third Party
+import JSONPretty from 'react-json-pretty';
 import React, { FunctionComponent } from 'react';
 import axios, { AxiosError } from 'axios';
-import { JSONSchema7 } from 'json-schema';
 import { Divider, Card, Row, Col } from 'antd';
+import { JSONSchema7 } from 'json-schema';
 import { Theme as AntDTheme } from '@rjsf/antd';
 import { isEqual } from 'lodash';
-import { withTheme, FormSubmit } from '@rjsf/core';
-import JSONPretty from 'react-json-pretty';
 import { v4 as uuidv4 } from 'uuid';
+import { withTheme, FormSubmit } from '@rjsf/core';
 
 // Components
 import Spinner from '../../components/spinner';
 
+// Styles & Assets
 import 'react-json-pretty/themes/adventure_time.css';
 
 const Form = withTheme(AntDTheme);
@@ -35,7 +36,11 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
     setRequest(body);
     let response;
     try {
-      const { data } = await axios.put('http://localhost:3000/connect', body);
+      const { data } = await axios.put(
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        `${process.env.REACT_APP_API_HOST!}/connect`,
+        body,
+      );
       response = data;
     } catch (error) {
       const errorWithType = error as AxiosError;

@@ -26,7 +26,8 @@ export default function useApp(): UseApp {
   } = useQuery<CarrierApp>(
     'app',
     async () => {
-      const { data } = await axios.get('http://localhost:3000');
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const { data } = await axios.get(process.env.REACT_APP_API_HOST!);
       return data;
     },
     {

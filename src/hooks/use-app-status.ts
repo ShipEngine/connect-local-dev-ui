@@ -26,7 +26,10 @@ export default function useAppStatus(): UseApp {
   } = useQuery<AppStatus>(
     'app-status',
     async () => {
-      const { data } = await axios.get('http://localhost:3000/app-status');
+      const { data } = await axios.get(
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        `${process.env.REACT_APP_API_HOST!}/app-status`,
+      );
       return data;
     },
     {
