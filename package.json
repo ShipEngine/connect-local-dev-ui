@@ -24,6 +24,7 @@
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "eslint src/**/*.ts{,x}",
     "release": "npm run upgrade && npm run clean && CI=true react-scripts test && npm run bump",
+    "prestart": "react-env --env /path/to/.env",
     "start": "PORT=4000 react-scripts start",
     "test": "react-scripts test",
     "upgrade": "npm-check -u && npm audit fix"
@@ -49,6 +50,7 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@beam-australia/react-env": "^2.1.2",
     "@jsdevtools/version-bump-prompt": "^6.0.6",
     "@testing-library/jest-dom": "^5.11.2",
     "@testing-library/react": "^10.4.7",
