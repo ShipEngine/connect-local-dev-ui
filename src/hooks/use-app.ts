@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { CarrierApp } from '@shipengine/connect-sdk/lib/internal/carriers';
+import API from '../utils/api';
 
 interface UseApp {
   isLoading: boolean;
@@ -26,8 +27,7 @@ export default function useApp(): UseApp {
   } = useQuery<CarrierApp>(
     'app',
     async () => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const { data } = await axios.get(process.env.REACT_APP_API_HOST!);
+      const { data } = await axios.get(API.getAppInfo);
       return data;
     },
     {

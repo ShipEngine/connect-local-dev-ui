@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { AppStatus } from '../types';
+import API from '../utils/api';
 
 interface UseApp {
   isLoading: boolean;
@@ -26,10 +27,7 @@ export default function useAppStatus(): UseApp {
   } = useQuery<AppStatus>(
     'app-status',
     async () => {
-      const { data } = await axios.get(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        `${process.env.REACT_APP_API_HOST!}/app-status`,
-      );
+      const { data } = await axios.get(API.getAppStatus);
       return data;
     },
     {

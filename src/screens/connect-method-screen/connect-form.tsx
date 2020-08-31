@@ -8,6 +8,7 @@ import { Theme as AntDTheme } from '@rjsf/antd';
 import { isEqual } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { withTheme, FormSubmit } from '@rjsf/core';
+import API from '../../utils/api';
 
 // Components
 import Spinner from '../../components/spinner';
@@ -36,11 +37,7 @@ const ConnectFrom: FunctionComponent<Props> = ({ schema, uiSchema }) => {
     setRequest(body);
     let response;
     try {
-      const { data } = await axios.put(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        `${process.env.REACT_APP_API_HOST!}/connect`,
-        body,
-      );
+      const { data } = await axios.put(API.putConnect, body);
       response = data;
     } catch (error) {
       const errorWithType = error as AxiosError;
