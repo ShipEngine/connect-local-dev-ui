@@ -6,7 +6,7 @@ interface AppStatusContextProps {
   isLoading: boolean;
   isError: boolean;
   appStatus?: AppStatus;
-  error?: unknown;
+  error?: Error;
 }
 
 const AppContext = React.createContext<AppStatusContextProps | undefined>(
@@ -21,6 +21,8 @@ const AppStatusProvider: FunctionComponent<AppStatusProviderProps> = ({
   children,
 }) => {
   const { isLoading, isError, appStatus, error } = useAppStatusHook();
+
+  console.log('appStatus', appStatus);
 
   return (
     <AppContext.Provider value={{ isLoading, isError, appStatus, error }}>
