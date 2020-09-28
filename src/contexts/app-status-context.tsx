@@ -22,8 +22,6 @@ const AppStatusProvider: FunctionComponent<AppStatusProviderProps> = ({
 }) => {
   const { isLoading, isError, appStatus, error } = useAppStatusHook();
 
-  console.log('appStatus', appStatus);
-
   return (
     <AppContext.Provider value={{ isLoading, isError, appStatus, error }}>
       {children}
